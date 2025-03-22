@@ -44,6 +44,9 @@ Talks about how it would be a long, community-supportive process to "infiltrate"
 
 # Jan 6 Follow-on Email
 
+> [!NOTE]
+> For context, this was an email sent to all previous projects asking them what kind of help they need, how things are going, etc., in a very lengthy form.
+
 Anke says this was for internal reference to VCs or other startup programs available to accelerate community growth, highlighting that it wasn't a direct fund distribution or grant opportunity. When asking about the mandate and transparency of allocations, the conversation steered towards making questions like these through public channels next time info comes up. :+1:
 
 - Database of projects that have received support
