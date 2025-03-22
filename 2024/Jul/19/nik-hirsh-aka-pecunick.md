@@ -1,4 +1,4 @@
-Below is a summary of the [original document](https://github.com/user-attachments/files/19402353/Meeting_Notes.pdfs)
+Below is a summary of the [original document](https://github.com/user-attachments/files/19402353/Meeting_Notes.pdf)
 
 ---
 
