@@ -105,4 +105,8 @@ The trading really was groundbreaking and transformative—showing me the true e
 
 ## What gets you out of bed in the morning?
 
+I had to take a deep breathing moment after writing that last response, because I've come to understand just how foundational markets are to societies. Even the regurgitation of my experiences watching these middlemen corrupt the price mechanisms gets me seething. They are taking so very much from the worst off just to line investors' pockets, and nobody even seems to notice!
 
+The whole world we live in is just so wrong financially, it bewilders me daily. That was my thought process when I woke up at 4am every day for 10 months in high school to write the book. And frankly, I would've done a whole other one on just the plumbing infrastructure if it was remotely popular.
+
+Something is so wrong with the financial system today; it's like a giant hole sucking wealth from everyone's pockets. A system I've intimately seen concentrate power and control into the designers' select few hands. It's a slow process that takes many decades, but I want nothing more than to give everything back to the masses.
