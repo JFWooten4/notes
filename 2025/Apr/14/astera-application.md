@@ -1,6 +1,7 @@
-This is my pplciation to Astera's [Resiency program](https://astera.org/residency). It's the first grant-style program I've applied to since the last SCF round, whch was a standout after generally years of inactivity on this front given zero progress with such a wide array of other sources. AT least after those intiial brush0ups.
+This is my application to Astera's [Residency program](https://astera.org/residency). It's the first grant-style program I've applied to since the last SCF round, which was a standout after generally years of inactivity on this front, given zero progress with such a wide array of other sources — at least after those initial brush-ups.
 
-I'm so avery tired of sitting here waiting for things to happen. I jsut want to get in that pilot's seat and send it all off at once. I respect the individuals behind this instittue, and I hope it can be the difference.
+I'm so very tired of sitting here waiting for things to happen. I just want to get in that pilot's seat and send it all off at once. I respect the individuals behind this institute, and I hope it can be the difference.
+
 
 ## Describe the problem you expect your residency to focus on and your proposed solution or direction for identifying a solution. Aim for a level of explanation that a smart college freshman could understand.
 
