@@ -7,7 +7,7 @@
 
 ```
 
-First of all, complete and total public transparency is the first and foremost objective when I consider any public disclosure of working materials. Moreover, I attempt in good faith to make as much of my efforts as possible comprehensively published online and available under free licensing. Notwithstanding, there are some instances where releasing complete source materials simply rests outside my locus of control; and in such cases I follow this sequential action flow:
+First of all, complete and total public transparency is the first and foremost objective when I consider any working materials. Moreover, I attempt in good faith to make as much of my efforts as possible comprehensively published online and available under free licensing. Notwithstanding, there are some instances where releasing complete source materials simply rests outside my locus of control, and in such cases I follow this sequential action flow:
 
 ### 1. Link to Source Publication
 
