@@ -22,11 +22,3 @@ Other times, the work in question might not be released publicly by the organizi
 That said, there are some day-to-day moments which are simply challenging to release under such an arrangement. The most pressing which I am now addressing are unrecorded meetings. Generally, all internal working meetings get recorded, even if they stay inside organizations I'm involved with, for the sake of securing MNPI. And, for anything that can be made public, I make a significant effort to only discuss in recorded public spaces, often hosted within the community.
 
 But sometimes I need to discuss things which relate to our work in an unrecorded meeting. Often, these chats center around more distant contributors who still fall prey to certain aspects of centralization, which is fine because any transition takes time and understanding. In an effort to spread the knowledge ascertained in these discussions, I take thorough digital notes of the most important points I can record, which get shared in this repository.
-
----
-
-## Development Help Wanted
-
-Ideally, this repo would be organized into a Docusaurus site where each organized subsection of note topics has a feed in the header.
-
-John Wooten CC BY-SA 4.0
