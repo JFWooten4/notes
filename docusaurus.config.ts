@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Notes',
   tagline: 'Public working notes, organized by year and date',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/icon.png',
 
   url: 'https://example.com',
   baseUrl: '/',
@@ -49,7 +49,7 @@ const config: Config = {
       title: 'Notes',
       logo: {
         alt: 'Notes',
-        src: 'img/favicon.svg',
+        src: 'img/icon.png',
       },
       items: [
         {to: '/docs', label: 'Docs', position: 'left'},
