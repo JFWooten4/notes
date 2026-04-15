@@ -1,0 +1,42 @@
+:root {
+  --ifm-color-primary: #9b4d1f;
+  --ifm-color-primary-dark: #8c451c;
+  --ifm-color-primary-darker: #84411a;
+  --ifm-color-primary-darkest: #6d3515;
+  --ifm-color-primary-light: #aa5522;
+  --ifm-color-primary-lighter: #b25924;
+  --ifm-color-primary-lightest: #c5652d;
+  --ifm-background-color: #fbf6ef;
+  --ifm-background-surface-color: #fffbf7;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Avenir Next", "Segoe UI", sans-serif;
+  --ifm-font-family-monospace: "Cascadia Code", "SFMono-Regular", monospace;
+  --ifm-navbar-background-color: rgba(255, 251, 246, 0.88);
+  --ifm-navbar-shadow: 0 1px 0 rgba(73, 49, 25, 0.08);
+  --ifm-footer-background-color: #1f1811;
+  --ifm-heading-color: #241d16;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #332a21;
+}
+
+.navbar {
+  backdrop-filter: blur(14px);
+}
+
+.theme-doc-sidebar-container {
+  border-right-color: rgba(73, 49, 25, 0.08);
+}
+
+.menu__link--active {
+  font-weight: 700;
+}
+
+main article markdown img {
+  border-radius: 12px;
+}
