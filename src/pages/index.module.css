@@ -88,6 +88,51 @@
   line-height: 1.65;
 }
 
+:global(html[data-theme='dark']) .page {
+  background:
+    radial-gradient(circle at top left, rgba(245, 154, 79, 0.14), transparent 30%),
+    radial-gradient(circle at top right, rgba(93, 143, 180, 0.16), transparent 28%),
+    linear-gradient(180deg, #15120f 0%, #211a14 100%);
+}
+
+:global(html[data-theme='dark']) .heroPanel {
+  border-color: rgba(255, 239, 220, 0.12);
+  background: rgba(31, 25, 20, 0.9);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+:global(html[data-theme='dark']) .kicker {
+  color: #f3a46f;
+}
+
+:global(html[data-theme='dark']) .title {
+  color: #fff8ef;
+}
+
+:global(html[data-theme='dark']) .subtitle {
+  color: #dbcbb9;
+}
+
+:global(html[data-theme='dark']) .secondary {
+  border-color: rgba(240, 163, 107, 0.45);
+  background: #2c2118;
+  color: #f4bb92;
+}
+
+:global(html[data-theme='dark']) .card {
+  border-color: rgba(255, 239, 220, 0.11);
+  background: rgba(31, 25, 20, 0.88);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+:global(html[data-theme='dark']) .card h2 {
+  color: #fff4e8;
+}
+
+:global(html[data-theme='dark']) .card p {
+  color: #d7c6b5;
+}
+
 @media (max-width: 996px) {
   .grid {
     grid-template-columns: 1fr;

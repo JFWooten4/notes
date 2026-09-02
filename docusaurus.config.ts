@@ -73,7 +73,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright ${new Date().getFullYear()} Notes`,
+      copyright: `John Wooten<br><small>${new Date().getFullYear()} <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4</a></small>`,
     },
     prism: {
       theme: {

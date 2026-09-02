@@ -17,12 +17,28 @@
   --ifm-heading-color: #241d16;
 }
 
+[data-theme='dark'] {
+  --ifm-color-primary: #f0a36b;
+  --ifm-color-primary-dark: #ed9250;
+  --ifm-color-primary-darker: #eb8942;
+  --ifm-color-primary-darkest: #e46c19;
+  --ifm-color-primary-light: #f3b486;
+  --ifm-color-primary-lighter: #f5bd94;
+  --ifm-color-primary-lightest: #f9d6bc;
+  --ifm-background-color: #15120f;
+  --ifm-background-surface-color: #211b16;
+  --ifm-navbar-background-color: rgba(24, 20, 16, 0.9);
+  --ifm-navbar-shadow: 0 1px 0 rgba(255, 239, 220, 0.1);
+  --ifm-footer-background-color: #0e0c0a;
+  --ifm-heading-color: #fff4e8;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  color: #332a21;
+  color: var(--ifm-font-color-base);
 }
 
 .navbar {
