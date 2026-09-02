@@ -29,6 +29,10 @@ body {
   backdrop-filter: blur(14px);
 }
 
+.navbar__logo img {
+  border-radius: 20%;
+}
+
 .theme-doc-sidebar-container {
   border-right-color: rgba(73, 49, 25, 0.08);
 }
@@ -37,6 +41,6 @@ body {
   font-weight: 700;
 }
 
-main article markdown img {
+main article .markdown img {
   border-radius: 12px;
 }

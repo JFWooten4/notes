@@ -6,7 +6,7 @@ const config: Config = {
   tagline: 'Public working notes, organized by year and date',
   favicon: 'img/icon.png',
 
-  url: 'https://example.com',
+  url: 'https://notes.wooten.link',
   baseUrl: '/',
 
   future: {
