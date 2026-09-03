@@ -46,33 +46,14 @@ const config: Config = {
 
   themeConfig: {
     navbar: {
-      title: 'Notes',
       logo: {
         alt: 'Notes',
         src: 'img/icon.png',
       },
-      items: [
-        {to: '/notes', label: 'Notes', position: 'left'},
-        {href: 'https://github.com/jfwooten4/notes', label: 'GitHub', position: 'right'},
-      ],
+      items: [{to: '/notes', label: 'Notes', position: 'left'}],
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Explore',
-          items: [
-            {label: 'Notes', to: '/notes'},
-            {label: 'About', to: '/about'},
-          ],
-        },
-        {
-          title: 'Source',
-          items: [
-            {label: 'Repository', href: 'https://github.com/jfwooten4/notes'},
-          ],
-        },
-      ],
       copyright: `John Wooten<br><small>${new Date().getFullYear()} <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4</a></small>`,
     },
     prism: {
