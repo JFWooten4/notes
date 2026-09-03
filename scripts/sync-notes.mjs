@@ -2,20 +2,23 @@ import {cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSy
 import path from 'node:path';
 
 const root = process.cwd();
-const sourceYears = ['2024', '2025', '2026'];
+const sourceYears = readdirSync(root, {withFileTypes: true})
+  .filter((entry) => entry.isDirectory() && /^\d{4}$/.test(entry.name))
+  .map((entry) => entry.name)
+  .sort();
 const docsRoot = path.join(root, 'docs', 'notes');
 const staticFilesRoot = path.join(root, 'static', 'files');
 
-const monthOrder = {
-  Jan: '01',
-  Feb: '02',
-  Mar: '03',
-  Apr: '04',
-  May: '05',
-  Jun: '06',
-  Jul: '07',
-  Aug: '08',
-  Sep: '09',
+const monthNumbers = {
+  Jan: '1',
+  Feb: '2',
+  Mar: '3',
+  Apr: '4',
+  May: '5',
+  Jun: '6',
+  Jul: '7',
+  Aug: '8',
+  Sep: '9',
   Oct: '10',
   Nov: '11',
   Dec: '12',
@@ -34,12 +37,39 @@ function titleFromSegments(year, parts, filename) {
   return named.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function frontMatter(title, slug) {
-  return ['---', `title: ${title}`, `slug: /notes/${slug}`, '---', ''].join('\n');
+function frontMatter(title, slug, sidebarPosition) {
+  return [
+    '---',
+    `title: ${title}`,
+    `slug: /notes/${slug}`,
+    `sidebar_position: ${sidebarPosition}`,
+    '---',
+    '',
+  ].join('\n');
 }
 
 function normalizeBody(body) {
   return body.replace(/^\uFEFF/, '').trimStart();
+}
+
+function dateParts(relative, filename) {
+  const [year, ...directories] = relative;
+  const stem = path.basename(filename, path.extname(filename));
+  const rawDate = /^\d+$/.test(stem) ? [...directories, stem] : directories;
+
+  if (!/^\d{4}$/.test(year) || rawDate.length !== 2) {
+    throw new Error(`Cannot derive a date from ${path.join(...relative, filename)}`);
+  }
+
+  const [rawMonth, rawDay] = rawDate;
+  const month = monthNumbers[rawMonth] ?? String(Number(rawMonth));
+  const day = String(Number(rawDay));
+
+  if (!/^\d+$/.test(month) || !/^\d+$/.test(day) || month === 'NaN' || day === 'NaN') {
+    throw new Error(`Cannot derive a date from ${path.join(...relative, filename)}`);
+  }
+
+  return {year, month, day};
 }
 
 function walk(dir, relative = []) {
@@ -55,15 +85,20 @@ function walk(dir, relative = []) {
     const extension = path.extname(entry.name).toLowerCase();
     if (extension === '.md') {
       const [year, ...rest] = nextRelative;
-      const destinationDir = path.join(docsRoot, ...relative);
-      const destinationFile = path.join(destinationDir, entry.name);
-      const slugParts = [...relative, path.basename(entry.name, extension)]
-        .map((part) => monthOrder[part] ?? part)
-        .join('/');
+      const {month, day} = dateParts(relative, entry.name);
+      const destinationDir = path.join(docsRoot, year);
+      const destinationFile = path.join(destinationDir, `${month}-${day}.md`);
+      const slug = `${year}/${month}/${day}`;
       const title = titleFromSegments(year, rest.slice(0, -1), entry.name);
       const content = normalizeBody(readFileSync(absolute, 'utf8'));
       ensureDir(destinationDir);
-      writeFileSync(destinationFile, `${frontMatter(title, slugParts)}${content}\n`);
+      if (existsSync(destinationFile)) {
+        throw new Error(`Multiple notes resolve to ${slug}`);
+      }
+      writeFileSync(
+        destinationFile,
+        `${frontMatter(title, slug, Number(month) * 100 + Number(day))}${content}\n`,
+      );
       continue;
     }
 
