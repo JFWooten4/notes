@@ -2,5 +2,5 @@ node_modules
 .docusaurus
 build
 .cache-loader
-docs/notes
+docs
 static/files

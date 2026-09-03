@@ -7,7 +7,9 @@ const sourceYears = readdirSync(root, {withFileTypes: true})
   .map((entry) => entry.name)
   .sort();
 const docsRoot = path.join(root, 'docs', 'notes');
+const monthsRoot = path.join(root, 'docs', 'months');
 const staticFilesRoot = path.join(root, 'static', 'files');
+const noteRecords = [];
 
 const monthNumbers = {
   Jan: '1',
@@ -23,6 +25,21 @@ const monthNumbers = {
   Nov: '11',
   Dec: '12',
 };
+
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 function ensureDir(dir) {
   mkdirSync(dir, {recursive: true});
@@ -99,6 +116,7 @@ function walk(dir, relative = []) {
         destinationFile,
         `${frontMatter(title, slug, Number(month) * 100 + Number(day))}${content}\n`,
       );
+      noteRecords.push({year, month, day, title, slug});
       continue;
     }
 
@@ -116,6 +134,9 @@ ensureDir(path.join(root, 'static'));
 if (existsSync(docsRoot)) {
   rmSync(docsRoot, {recursive: true, force: true});
 }
+if (existsSync(monthsRoot)) {
+  rmSync(monthsRoot, {recursive: true, force: true});
+}
 if (existsSync(staticFilesRoot)) {
   rmSync(staticFilesRoot, {recursive: true, force: true});
 }
@@ -128,4 +149,35 @@ for (const year of sourceYears) {
   if (existsSync(yearPath) && statSync(yearPath).isDirectory()) {
     walk(yearPath, [year]);
   }
+}
+
+const notesByMonth = new Map();
+for (const note of noteRecords) {
+  const key = `${note.year}-${note.month}`;
+  const notes = notesByMonth.get(key) ?? [];
+  notes.push(note);
+  notesByMonth.set(key, notes);
+}
+ensureDir(monthsRoot);
+
+for (const notes of notesByMonth.values()) {
+  const [{year, month}] = notes;
+  const title = `${monthNames[Number(month) - 1]} ${year}`;
+  const links = notes
+    .sort((left, right) => Number(left.day) - Number(right.day))
+    .map((note) => `- [${note.title}](/${note.slug})`);
+
+  writeFileSync(
+    path.join(monthsRoot, `${year}-${month}.md`),
+    [
+      '---',
+      `title: ${title}`,
+      `slug: /${year}/${month}`,
+      'displayed_sidebar: docsSidebar',
+      '---',
+      '',
+      ...links,
+      '',
+    ].join('\n'),
+  );
 }
