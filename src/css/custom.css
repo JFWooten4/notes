@@ -1,0 +1,62 @@
+:root {
+  --ifm-color-primary: #9b4d1f;
+  --ifm-color-primary-dark: #8c451c;
+  --ifm-color-primary-darker: #84411a;
+  --ifm-color-primary-darkest: #6d3515;
+  --ifm-color-primary-light: #aa5522;
+  --ifm-color-primary-lighter: #b25924;
+  --ifm-color-primary-lightest: #c5652d;
+  --ifm-background-color: #fbf6ef;
+  --ifm-background-surface-color: #fffbf7;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Avenir Next", "Segoe UI", sans-serif;
+  --ifm-font-family-monospace: "Cascadia Code", "SFMono-Regular", monospace;
+  --ifm-navbar-background-color: rgba(255, 251, 246, 0.88);
+  --ifm-navbar-shadow: 0 1px 0 rgba(73, 49, 25, 0.08);
+  --ifm-footer-background-color: #1f1811;
+  --ifm-heading-color: #241d16;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #f0a36b;
+  --ifm-color-primary-dark: #ed9250;
+  --ifm-color-primary-darker: #eb8942;
+  --ifm-color-primary-darkest: #e46c19;
+  --ifm-color-primary-light: #f3b486;
+  --ifm-color-primary-lighter: #f5bd94;
+  --ifm-color-primary-lightest: #f9d6bc;
+  --ifm-background-color: #15120f;
+  --ifm-background-surface-color: #211b16;
+  --ifm-navbar-background-color: rgba(24, 20, 16, 0.9);
+  --ifm-navbar-shadow: 0 1px 0 rgba(255, 239, 220, 0.1);
+  --ifm-footer-background-color: #0e0c0a;
+  --ifm-heading-color: #fff4e8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ifm-font-color-base);
+}
+
+.navbar {
+  backdrop-filter: blur(14px);
+}
+
+.navbar__logo img {
+  border-radius: 20%;
+}
+
+.theme-doc-sidebar-container {
+  border-right-color: rgba(73, 49, 25, 0.08);
+}
+
+.menu__link--active {
+  font-weight: 700;
+}
+
+main article .markdown img {
+  border-radius: 12px;
+}
