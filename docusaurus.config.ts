@@ -50,7 +50,7 @@ const config: Config = {
         alt: 'Notes',
         src: 'img/icon.png',
       },
-      items: [{to: '/notes', label: 'Notes', position: 'left'}],
+      items: [{to: '/2026/3/6', label: 'Notes', position: 'left'}],
     },
     footer: {
       style: 'dark',

@@ -13,7 +13,7 @@ This site publishes the notes in this repository as a browsable Docusaurus docum
 
 ## Browse the archive
 
-- [Open the notes index](/notes)
+- [Open the notes archive](/2026/3/6)
 
 ## Source repository
 

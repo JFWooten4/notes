@@ -123,11 +123,6 @@ if (existsSync(staticFilesRoot)) {
 ensureDir(docsRoot);
 ensureDir(staticFilesRoot);
 
-writeFileSync(
-  path.join(docsRoot, 'index.md'),
-  ['---', 'title: Notes Index', 'slug: /notes', '---', '', 'Generated note pages live under this section and are grouped by year.', '', 'Use the sidebar to browse chronologically.', ''].join('\n'),
-);
-
 for (const year of sourceYears) {
   const yearPath = path.join(root, year);
   if (existsSync(yearPath) && statSync(yearPath).isDirectory()) {

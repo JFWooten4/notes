@@ -34,7 +34,7 @@ export default function Home(): React.JSX.Element {
               repository with one command.
             </p>
             <div className={styles.actions}>
-              <Link className="button button--primary button--lg" to="/notes">
+              <Link className="button button--primary button--lg" to="/2026/3/6">
                 Open notes
               </Link>
               <Link className={clsx('button button--secondary button--lg', styles.secondary)} to="/about">
