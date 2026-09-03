@@ -1,4 +1,5 @@
 import type React from 'react';
+import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
@@ -14,6 +15,11 @@ export default function Home(): React.JSX.Element {
             <div className={styles.actions}>
               <Link className="button button--primary button--lg" to="/2026/3/6">
                 Read the latest note
+              </Link>
+              <Link
+                className={clsx('button button--secondary button--lg', styles.secondary)}
+                to="https://github.com/JFWooten4/notes">
+                GitHub
               </Link>
             </div>
           </div>
