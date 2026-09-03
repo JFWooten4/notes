@@ -1,5 +1,5 @@
 ---
-slug: /
+slug: /about
 title: Notes
 ---
 
@@ -13,7 +13,7 @@ This site publishes the notes in this repository as a browsable Docusaurus docum
 
 ## Browse the archive
 
-- [Open the notes index](./notes/index.md)
+- [Open the notes index](/notes)
 
 ## Source repository
 

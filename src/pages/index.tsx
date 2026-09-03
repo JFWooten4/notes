@@ -34,11 +34,11 @@ export default function Home(): React.JSX.Element {
               repository with one command.
             </p>
             <div className={styles.actions}>
-              <Link className="button button--primary button--lg" to="/docs">
-                Open docs
+              <Link className="button button--primary button--lg" to="/notes">
+                Open notes
               </Link>
-              <Link className={clsx('button button--secondary button--lg', styles.secondary)} to="/docs/notes">
-                Browse notes
+              <Link className={clsx('button button--secondary button--lg', styles.secondary)} to="/about">
+                About the archive
               </Link>
             </div>
           </div>

@@ -30,7 +30,7 @@ const config: Config = {
       {
         docs: {
           path: 'docs',
-          routeBasePath: 'docs',
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           showLastUpdateAuthor: false,
           showLastUpdateTime: false,
@@ -52,7 +52,7 @@ const config: Config = {
         src: 'img/icon.png',
       },
       items: [
-        {to: '/docs', label: 'Docs', position: 'left'},
+        {to: '/notes', label: 'Notes', position: 'left'},
         {href: 'https://github.com/jfwooten4/notes', label: 'GitHub', position: 'right'},
       ],
     },
@@ -62,8 +62,8 @@ const config: Config = {
         {
           title: 'Explore',
           items: [
-            {label: 'Docs', to: '/docs'},
-            {label: 'Latest Notes', to: '/docs/notes'},
+            {label: 'Notes', to: '/notes'},
+            {label: 'About', to: '/about'},
           ],
         },
         {

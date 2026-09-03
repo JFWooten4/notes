@@ -41,7 +41,7 @@ function frontMatter(title, slug, sidebarPosition) {
   return [
     '---',
     `title: ${title}`,
-    `slug: /notes/${slug}`,
+    `slug: /${slug}`,
     `sidebar_position: ${sidebarPosition}`,
     '---',
     '',
