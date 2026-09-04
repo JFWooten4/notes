@@ -163,9 +163,13 @@ ensureDir(monthsRoot);
 for (const notes of notesByMonth.values()) {
   const [{year, month}] = notes;
   const title = `${monthNames[Number(month) - 1]} ${year}`;
-  const links = notes
+  const items = notes
     .sort((left, right) => Number(left.day) - Number(right.day))
-    .map((note) => `- [${note.title}](/${note.slug})`);
+    .map((note) => ({
+      type: 'link',
+      href: `/${note.slug}`,
+      label: note.title,
+    }));
 
   writeFileSync(
     path.join(monthsRoot, `${year}-${month}.md`),
@@ -176,7 +180,9 @@ for (const notes of notesByMonth.values()) {
       'displayed_sidebar: docsSidebar',
       '---',
       '',
-      ...links,
+      "import DocCardList from '@theme/DocCardList';",
+      '',
+      `<DocCardList items={${JSON.stringify(items)}} />`,
       '',
     ].join('\n'),
   );
