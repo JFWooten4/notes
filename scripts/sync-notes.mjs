@@ -45,19 +45,22 @@ function ensureDir(dir) {
   mkdirSync(dir, {recursive: true});
 }
 
-function titleFromSegments(year, parts, filename) {
-  const stem = filename.replace(/\.[^.]+$/, '');
-  const named = stem.replace(/[-_]/g, ' ').trim();
-  if (/^\d+$/.test(named) && parts.length > 0) {
-    return `${year} ${parts.join(' ')} ${named}`;
+function titleFromBody(body, source) {
+  const heading = body.match(/^#\s+(.+)$/m)?.[1];
+  if (!heading) {
+    throw new Error(`Missing a top-level title in ${source}`);
   }
-  return named.replace(/\b\w/g, (c) => c.toUpperCase());
+  return heading
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .trim();
 }
 
 function frontMatter(title, slug, sidebarPosition) {
   return [
     '---',
-    `title: ${title}`,
+    `title: ${JSON.stringify(title)}`,
     `slug: /${slug}`,
     `sidebar_position: ${sidebarPosition}`,
     '---',
@@ -72,9 +75,9 @@ function normalizeBody(body) {
 function dateParts(relative, filename) {
   const [year, ...directories] = relative;
   const stem = path.basename(filename, path.extname(filename));
-  const rawDate = /^\d+$/.test(stem) ? [...directories, stem] : directories;
+  const rawDate = [...directories, stem];
 
-  if (!/^\d{4}$/.test(year) || rawDate.length !== 2) {
+  if (!/^\d{4}$/.test(year) || directories.length !== 1 || !/^\d+$/.test(stem)) {
     throw new Error(`Cannot derive a date from ${path.join(...relative, filename)}`);
   }
 
@@ -101,13 +104,13 @@ function walk(dir, relative = []) {
 
     const extension = path.extname(entry.name).toLowerCase();
     if (extension === '.md') {
-      const [year, ...rest] = nextRelative;
+      const [year] = nextRelative;
       const {month, day} = dateParts(relative, entry.name);
       const destinationDir = path.join(docsRoot, year);
       const destinationFile = path.join(destinationDir, `${month}-${day}.md`);
       const slug = `${year}/${month}/${day}`;
-      const title = titleFromSegments(year, rest.slice(0, -1), entry.name);
       const content = normalizeBody(readFileSync(absolute, 'utf8'));
+      const title = titleFromBody(content, path.join(...relative, entry.name));
       ensureDir(destinationDir);
       if (existsSync(destinationFile)) {
         throw new Error(`Multiple notes resolve to ${slug}`);
