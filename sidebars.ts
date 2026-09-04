@@ -11,7 +11,7 @@ const sidebars: SidebarsConfig = {
   docsSidebar: years.map((year) => ({
     type: 'category' as const,
     label: year,
-    collapsed: true,
+    collapsed: false,
     link: {
       type: 'generated-index' as const,
       slug: `/${year}`,
