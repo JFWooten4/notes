@@ -10,6 +10,16 @@ const docsRoot = path.join(root, 'docs', 'notes');
 const monthsRoot = path.join(root, 'docs', 'months');
 const staticFilesRoot = path.join(root, 'static', 'files');
 const noteRecords = [];
+const publishedAssetExtensions = new Set([
+  '.avif',
+  '.gif',
+  '.jpeg',
+  '.jpg',
+  '.pdf',
+  '.png',
+  '.svg',
+  '.webp',
+]);
 
 const monthNumbers = {
   Jan: '1',
@@ -72,6 +82,45 @@ function normalizeBody(body) {
   return body.replace(/^\uFEFF/, '').trimStart();
 }
 
+function rewriteLocalAssetLinks(body, sourceFile) {
+  return body.replace(
+    /(!?\[[^\]]*\]\()((?:<[^>\n]+>)|(?:[^)\s]+))([^)]*\))/g,
+    (link, prefix, rawDestination, suffix) => {
+      const destination = rawDestination.replace(/^<|>$/g, '');
+      if (/^(?:[a-z][a-z\d+.-]*:|\/|#)/i.test(destination)) {
+        return link;
+      }
+
+      const [, rawPath, urlSuffix = ''] = destination.match(/^([^?#]+)([?#].*)?$/) ?? [];
+      if (!rawPath || !publishedAssetExtensions.has(path.extname(rawPath).toLowerCase())) {
+        return link;
+      }
+
+      let decodedPath;
+      try {
+        decodedPath = decodeURIComponent(rawPath);
+      } catch {
+        throw new Error(`Cannot decode local asset link ${destination} in ${sourceFile}`);
+      }
+
+      const sourceAsset = path.resolve(path.dirname(sourceFile), decodedPath);
+      const relativeAsset = path.relative(root, sourceAsset);
+      if (relativeAsset.startsWith('..') || path.isAbsolute(relativeAsset)) {
+        throw new Error(`Local asset link escapes the notes directory: ${destination}`);
+      }
+      if (!existsSync(sourceAsset)) {
+        throw new Error(`Missing local asset ${destination} referenced by ${sourceFile}`);
+      }
+
+      const publicPath = relativeAsset
+        .split(path.sep)
+        .map((segment) => encodeURIComponent(segment))
+        .join('/');
+      return `${prefix}/files/${publicPath}${urlSuffix}${suffix}`;
+    },
+  );
+}
+
 function dateParts(relative, filename) {
   const [year, ...directories] = relative;
   const stem = path.basename(filename, path.extname(filename));
@@ -109,8 +158,10 @@ function walk(dir, relative = []) {
       const destinationDir = path.join(docsRoot, year);
       const destinationFile = path.join(destinationDir, `${month}-${day}.md`);
       const slug = `${year}/${month}/${day}`;
-      const content = normalizeBody(readFileSync(absolute, 'utf8'));
-      const title = titleFromBody(content, path.join(...relative, entry.name));
+      const source = path.join(...relative, entry.name);
+      const rawContent = normalizeBody(readFileSync(absolute, 'utf8'));
+      const content = rewriteLocalAssetLinks(rawContent, absolute);
+      const title = titleFromBody(rawContent, source);
       ensureDir(destinationDir);
       if (existsSync(destinationFile)) {
         throw new Error(`Multiple notes resolve to ${slug}`);
@@ -123,7 +174,7 @@ function walk(dir, relative = []) {
       continue;
     }
 
-    if (extension === '.pdf') {
+    if (publishedAssetExtensions.has(extension)) {
       const destinationDir = path.join(staticFilesRoot, ...relative);
       ensureDir(destinationDir);
       cpSync(absolute, path.join(destinationDir, entry.name));
