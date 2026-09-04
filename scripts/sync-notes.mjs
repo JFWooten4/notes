@@ -45,10 +45,18 @@ function ensureDir(dir) {
   mkdirSync(dir, {recursive: true});
 }
 
-function titleFromSegments(year, parts, filename) {
+function titleFromSegments(year, parts, filename, body) {
   const stem = filename.replace(/\.[^.]+$/, '');
   const named = stem.replace(/[-_]/g, ' ').trim();
   if (/^\d+$/.test(named) && parts.length > 0) {
+    const heading = body.match(/^#\s+(.+)$/m)?.[1];
+    if (heading) {
+      return heading
+        .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/[*_`]/g, '')
+        .trim();
+    }
     return `${year} ${parts.join(' ')} ${named}`;
   }
   return named.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -57,7 +65,7 @@ function titleFromSegments(year, parts, filename) {
 function frontMatter(title, slug, sidebarPosition) {
   return [
     '---',
-    `title: ${title}`,
+    `title: ${JSON.stringify(title)}`,
     `slug: /${slug}`,
     `sidebar_position: ${sidebarPosition}`,
     '---',
@@ -106,8 +114,8 @@ function walk(dir, relative = []) {
       const destinationDir = path.join(docsRoot, year);
       const destinationFile = path.join(destinationDir, `${month}-${day}.md`);
       const slug = `${year}/${month}/${day}`;
-      const title = titleFromSegments(year, rest.slice(0, -1), entry.name);
       const content = normalizeBody(readFileSync(absolute, 'utf8'));
+      const title = titleFromSegments(year, rest.slice(0, -1), entry.name, content);
       ensureDir(destinationDir);
       if (existsSync(destinationFile)) {
         throw new Error(`Multiple notes resolve to ${slug}`);
