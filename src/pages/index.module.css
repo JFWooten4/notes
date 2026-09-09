@@ -1,9 +1,8 @@
 .page {
   min-height: calc(100vh - var(--ifm-navbar-height));
   background:
-    radial-gradient(circle at top left, rgba(245, 154, 79, 0.18), transparent 30%),
-    radial-gradient(circle at top right, rgba(93, 143, 180, 0.2), transparent 28%),
-    linear-gradient(180deg, #f7f1e8 0%, #efe5d6 100%);
+    linear-gradient(rgba(22, 16, 10, 0.48), rgba(22, 16, 10, 0.62)),
+    url('/img/market-research.jpg') center / cover no-repeat;
 }
 
 .hero {
@@ -55,9 +54,8 @@
 
 :global(html[data-theme='dark']) .page {
   background:
-    radial-gradient(circle at top left, rgba(245, 154, 79, 0.14), transparent 30%),
-    radial-gradient(circle at top right, rgba(93, 143, 180, 0.16), transparent 28%),
-    linear-gradient(180deg, #15120f 0%, #211a14 100%);
+    linear-gradient(rgba(7, 6, 5, 0.68), rgba(7, 6, 5, 0.8)),
+    url('/img/market-research.jpg') center / cover no-repeat;
 }
 
 :global(html[data-theme='dark']) .heroPanel {
