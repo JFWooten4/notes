@@ -1,5 +1,11 @@
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+
+const {path: latestNotePath} = JSON.parse(
+  readFileSync(path.join(process.cwd(), 'docs', 'latest-note.json'), 'utf8'),
+) as {path: string};
 
 const config: Config = {
   title: 'Notes',
@@ -8,6 +14,8 @@ const config: Config = {
 
   url: 'https://notes.wooten.link',
   baseUrl: '/',
+
+  customFields: {latestNotePath},
 
   future: {
     experimental_faster: true,
@@ -50,7 +58,7 @@ const config: Config = {
         alt: 'Notes',
         src: 'img/icon.png',
       },
-      items: [{to: '/2026/3/6', label: 'Notes', position: 'left'}],
+      items: [{to: latestNotePath, label: 'Notes', position: 'left'}],
     },
     footer: {
       style: 'dark',
