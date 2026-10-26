@@ -9,7 +9,8 @@
     "start": "npm run sync:notes && docusaurus start",
     "build": "npm run sync:notes && docusaurus build",
     "serve": "docusaurus serve",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.6.3",
