@@ -205,6 +205,22 @@ for (const year of sourceYears) {
   }
 }
 
+const latestNote = [...noteRecords].sort(
+  (a, b) =>
+    Number(b.year) - Number(a.year) ||
+    Number(b.month) - Number(a.month) ||
+    Number(b.day) - Number(a.day),
+)[0];
+
+if (!latestNote) {
+  throw new Error('Cannot build the site without any dated notes.');
+}
+
+writeFileSync(
+  path.join(root, 'docs', 'latest-note.json'),
+  `${JSON.stringify({path: `/${latestNote.slug}`})}\n`,
+);
+
 const notesByMonth = new Map();
 for (const note of noteRecords) {
   const key = `${note.year}-${note.month}`;
